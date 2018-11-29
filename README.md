@@ -6,7 +6,7 @@ Davids-Air:flask-app-da davidaronson$ . virt/bin/activate
 
 (virt) Davids-Air:flask-app-da davidaronson$ pip install awsebcli --upgrade
 
-eb init -p python-3.6 flask-app-da --region us-east-2
+eb init -p python-3.6 flask-app-cg --region us-east-2
 
 
 flask-app-da
