@@ -20,18 +20,21 @@ application.secret_key = 'cdg1312001GDC'
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 def index():
+    return "hello world"
+@application.route('/bform', methods=['GET', 'POST'])
+def bform():
     form1 = EnterDBInfo(request.form)
     form2 = RetrieveDBInfo(request.form)
 
     if request.method == 'POST' and form1.validate():
-        data_entered = Data(notes=form1.dbNotes.data)
+        data_entered = Data(notes = form1.dbNotes.data, uname = form1.dbName.data, product_name = form1.dbProduct_Name.data, product_description = form1.dbProduct_Description.data, help = form1.dbHelp.data)
         try:
             db.session.add(data_entered)
             db.session.commit()
             db.session.close()
         except:
             db.session.rollback()
-        return render_template('thanks.html', notes=form1.dbNotes.data)
+        return render_template('thanks.html', notes=form1.dbName.data)
 #not chained
     if request.method == 'POST' and form2.validate():
         try:
@@ -44,7 +47,7 @@ def index():
             db.session.rollback()
         return render_template('results.html', results=query_db, num_return=num_return)
 
-    return render_template('index.html', form1=form1, form2=form2)
+    return render_template('bform.html', form1=form1)
 
 if __name__ == '__main__':
     application.run(host='0.0.0.0')
