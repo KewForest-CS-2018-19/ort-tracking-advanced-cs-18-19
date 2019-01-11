@@ -21,13 +21,33 @@ application.secret_key = 'cdg1312001GDC'
 @application.route('/index', methods=['GET', 'POST'])
 def index():
     return "hello world"
+
+@application.route('/bview', methods=['GET', 'POST'])
+def bview():
+    #form2 = RetrieveDBInfo(request.form)
+#not chained
+    #if request.method == 'POST' and form2.validate():
+    try:
+        #num_return = int(form2.numRetrieve.data)
+        query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        for q in query_db:
+            print(q.notes)
+        db.session.close()
+    except:
+        db.session.rollback()
+    return render_template('results.html', results=query_db)
+
+    #return render_template('bview.html', form1=form2)
+
+
+
+
 @application.route('/bform', methods=['GET', 'POST'])
 def bform():
     form1 = EnterDBInfo(request.form)
-    form2 = RetrieveDBInfo(request.form)
 
     if request.method == 'POST' and form1.validate():
-        data_entered = Data(notes = form1.dbNotes.data, uname = form1.dbDate.data, product_name = form1.dbWeight_of_ORT.data, product_description = form1.dbWeight_of_Compost.data, help = form1.dbGroups.data)
+        data_entered = Data(notes = form1.dbNotes.data, date = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data)
         try:
             db.session.add(data_entered)
             db.session.commit()
@@ -35,18 +55,6 @@ def bform():
         except:
             db.session.rollback()
         return render_template('thanks.html', notes=form1.dbName.data)
-#not chained
-    if request.method == 'POST' and form2.validate():
-        try:
-            num_return = int(form2.numRetrieve.data)
-            query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
-            for q in query_db:
-                print(q.notes)
-            db.session.close()
-        except:
-            db.session.rollback()
-        return render_template('results.html', results=query_db, num_return=num_return)
-
     return render_template('bform.html', form1=form1)
 
 if __name__ == '__main__':
