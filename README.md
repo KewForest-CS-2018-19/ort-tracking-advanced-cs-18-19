@@ -9,7 +9,8 @@ Davids-Air:flask-app-da davidaronson$ . virt/bin/activate
 (virt) Davids-Air:flask-app-da davidaronson$ pip install -r requirements.txt
 
 
-eb init -p python-3.6 flask-app-cg --region us-east-2
+eb init -p python-3.6 ort-tracker --region us-east-2
+eb deploy
 
 
 flask-app-da
