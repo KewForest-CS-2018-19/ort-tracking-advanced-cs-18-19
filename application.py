@@ -47,7 +47,7 @@ def bform():
     form1 = EnterDBInfo(request.form)
 
     if request.method == 'POST' and form1.validate():
-        data_entered = Data(notes = form1.dbNotes.data, date = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data)
+        data_entered = Data(notes = form1.dbNotes.data, tdate = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data)
         try:
             db.session.add(data_entered)
             db.session.commit()

@@ -3,7 +3,7 @@ from application import db
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     notes = db.Column(db.String(128), index=True, unique=False)
-    date = db.Column(db.String(128), index=True, unique=False)
+    tdate = db.Column(db.String(128), index=True, unique=False)
     weight_of_ort = db.Column(db.String(128), index=True, unique=False)
     weight_of_compost = db.Column(db.String(128), index=True, unique=False)
     groups = db.Column(db.String(128), index=True, unique=False)
