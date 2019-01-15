@@ -9,6 +9,13 @@ from flask import Flask, render_template, request
 from application import db
 from application.models import Data
 from application.forms import EnterDBInfo, RetrieveDBInfo
+from flask_login import LoginManager
+from flask_login import current_user, login_user
+from app.models import User
+from flask_login import logout_user
+from flask_login import login_required
+
+
 
 # Elastic Beanstalk initalization
 application = Flask(__name__)
@@ -16,7 +23,8 @@ application.debug=True
 # change this to your own value
 application.secret_key = 'cdg1312001GDC'
 #application.secret_key = 'cC1YCIWOj9GgWspgNEo2'
-
+login = LoginManager(app)
+login.login_view = 'login'
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 def index():
@@ -43,6 +51,7 @@ def bview():
 
 
 @application.route('/bform', methods=['GET', 'POST'])
+@login_required
 def bform():
     form1 = EnterDBInfo(request.form)
 
@@ -59,3 +68,31 @@ def bform():
 
 if __name__ == '__main__':
     application.run(host='0.0.0.0')
+
+
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user, remember=form.remember_me.data)
+        return redirect(url_for('index'))
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
+        return redirect(next_page)
+    return render_template('login.html', title='Sign In', form=form)
+
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))

@@ -19,3 +19,4 @@ argparse==1.4.0
 
 #wsgiref==0.1.2
 boto==2.49.0
+flask-login==0.4.1
