@@ -11,7 +11,7 @@ from application.models import Data
 from application.forms import EnterDBInfo, RetrieveDBInfo
 from flask_login import LoginManager
 from flask_login import current_user, login_user
-from app.models import User
+from application.models import User
 from flask_login import logout_user
 from flask_login import login_required
 from app import db
@@ -26,8 +26,8 @@ application.debug=True
 # change this to your own value
 application.secret_key = 'cdg1312001GDC'
 #application.secret_key = 'cC1YCIWOj9GgWspgNEo2'
-login = LoginManager(app)
-login.login_view = 'login'
+login = LoginManager(application)
+#login.login_view = 'login'
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 def index():
@@ -54,7 +54,7 @@ def bview():
 
 
 @application.route('/bform', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def bform():
     form1 = EnterDBInfo(request.form)
 
@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
 
 
-
+"""
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -99,17 +99,4 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+"""

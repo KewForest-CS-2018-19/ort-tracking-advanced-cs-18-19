@@ -1,12 +1,12 @@
 from application import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from application import login
+#from application import login
 
 
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     notes = db.Column(db.String(128), index=True, unique=False)
-    wdate = db.Column(db.String(128), index=True, unique=False)
+    wdate = db.Column(db.Date(), index=True, unique=False)
     weight_of_ort = db.Column(db.String(128), index=True, unique=False)
     weight_of_compost = db.Column(db.String(128), index=True, unique=False)
     groups = db.Column(db.String(128), index=True, unique=False)
@@ -36,7 +36,8 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-
+"""
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+"""
