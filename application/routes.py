@@ -7,6 +7,8 @@ from app.forms import RegistrationForm
 
 # ...
 
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
