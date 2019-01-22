@@ -14,8 +14,8 @@ from flask_login import current_user, login_user
 from application.models import User
 from flask_login import logout_user
 from flask_login import login_required
-from app import db
-from app.forms import RegistrationForm
+from application import db
+from application.forms import RegistrationForm
 
 
 
@@ -64,9 +64,11 @@ def bform():
             db.session.add(data_entered)
             db.session.commit()
             db.session.close()
+            return render_template('thanks.html', notes=form1.dbNotes.data)
         except:
             db.session.rollback()
-        return render_template('thanks.html', notes=form1.dbNotes.data)
+            return render_template('bform.html', form1=form1)
+        #return render_template('thanks.html', notes=form1.dbNotes.data)
     return render_template('bform.html', form1=form1)
 
 if __name__ == '__main__':

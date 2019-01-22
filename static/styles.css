@@ -1,5 +1,12 @@
 body { max-width: 960px; margin: 0 auto; background: #b6effe;; }
-h1 { font-family: 'GlacialIndifferenceRegular',serif; color: #a500fb; margin: 1rem 0; }
+html{
+  background:repeating-linear-gradient(180deg, #00f, #00f 25px, #70a 25px, #70a 50px, #f00 50px, #f00 75px, #f70 75px, #f70 100px, #ff0 100px, #ff0 125px, #0f0 125px, #0f0 150px);
+  height: 100%;
+}
+.content {
+  background:#fffc;
+}
+h1 { font-family: 'GlacialIndifferenceRegular',serif; color: #000; margin: 1rem 0; }
 h2 { font-family: 'GlacialIndifferenceRegular' ; background: #00ffdb4d; padding: 1rem; }
 a { color: #377ba8; }
 hr { border: none; border-top: 1px solid black; }
