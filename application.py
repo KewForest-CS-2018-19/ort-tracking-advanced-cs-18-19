@@ -5,6 +5,7 @@ Author: Scott Rodkey - rodkeyscott@gmail.com
 Step-by-step tutorial: https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
 '''
 
+
 from flask import Flask, render_template, request
 from application import db
 from application.models import Data
