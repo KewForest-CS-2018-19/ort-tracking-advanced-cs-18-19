@@ -5,9 +5,10 @@ from flask_login import LoginManager
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
-from .models import User
-from .forms import RegistrationForm
-from db import db,application
+from .routes import *
+#from . models import User
+#from forms import RegistrationForm
+#from db import db,application
 
 application = Flask(__name__)
 application.config.from_object('config')

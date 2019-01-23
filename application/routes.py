@@ -1,8 +1,8 @@
 from flask_login import current_user, login_user
-from app.models import User
+from .models import User
 from flask_login import logout_user
-from app import db
-from app.forms import RegistrationForm
+from . import db
+from .forms import RegistrationForm
 
 
 # ...
