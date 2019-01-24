@@ -1,6 +1,6 @@
-body { max-width: 960px; margin: 0 auto; background: #fffea4;; }
+body { max-width: 960px; margin: 0 auto; background: #b6effe;; }
 html{
-  background:repeating-linear-gradient(180deg, #00dbff66, #00dbff66 25px, #7700aa80 25px, #7700aa80 50px, #ff00b499 50px, #ff00b499 75px, #f709 75px, #f709 100px, #ff0 100px, #ff0 125px, #0f0 125px, #0f0 150px);
+  background:repeating-linear-gradient(180deg, #00dbff66, #00dbff66 25px, #70a6 25px, #70a6 50px, #ff00b480 50px, #ff00b480 75px, #ff770080 75px, #ff770080 100px, #ff06 100px, #ff06 125px, #00ff0080 125px, #00ff0080 150px);
 }
 .content {
   background:#fffc;
