@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% import 'macros.html' as macros %}
 {% block content %}
 
-<div class="col-md-4 col-md-offset-4">
+<div class="col-md-4 col-md-offset-4 content">
 
       <div align="center">
         <h2>ORT Tracker</h2>
@@ -13,7 +13,7 @@
 
     {{ form1.hidden_tag() }}
 
-    {{ macros.render_field(form1.dbDate, placeholder='Enter date', type='dbNotes', label_visible=false) }}
+    
     {{ macros.render_field(form1.dbNotes, placeholder='Enter additional information', type='dbNotes', label_visible=false) }}
     {{ macros.render_field(form1.dbWeight_of_ORT, placeholder='Weight in pounds for ORT', type='dbNotes', label_visible=false) }}
     {{ macros.render_field(form1.dbWeight_of_Compost, placeholder='Weight in pounds for Compost', type='dbNotes', label_visible=false) }}

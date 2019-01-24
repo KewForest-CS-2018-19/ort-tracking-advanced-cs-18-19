@@ -11,9 +11,12 @@ from application.models import Data
 from application.forms import EnterDBInfo, RetrieveDBInfo
 from flask_login import LoginManager
 from flask_login import current_user, login_user
-from app.models import User
+from application.models import User
 from flask_login import logout_user
 from flask_login import login_required
+from application import db
+from application.forms import RegistrationForm
+
 
 
 
@@ -23,8 +26,8 @@ application.debug=True
 # change this to your own value
 application.secret_key = 'cdg1312001GDC'
 #application.secret_key = 'cC1YCIWOj9GgWspgNEo2'
-login = LoginManager(app)
-login.login_view = 'login'
+login = LoginManager(application)
+#login.login_view = 'login'
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 def index():
@@ -51,7 +54,7 @@ def bview():
 
 
 @application.route('/bform', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def bform():
     form1 = EnterDBInfo(request.form)
 
@@ -61,9 +64,12 @@ def bform():
             db.session.add(data_entered)
             db.session.commit()
             db.session.close()
-        except:
+            return render_template('thanks.html', notes=form1.dbNotes.data)
+        except Exception as e:
             db.session.rollback()
-        return render_template('thanks.html', notes=form1.dbNotes.data)
+            print("error" ,e)
+            return render_template('bform.html', form1=form1)
+        #return render_template('thanks.html', notes=form1.dbNotes.data)
     return render_template('bform.html', form1=form1)
 
 if __name__ == '__main__':
@@ -71,7 +77,7 @@ if __name__ == '__main__':
 
 
 
-
+"""
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -96,3 +102,4 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+"""
