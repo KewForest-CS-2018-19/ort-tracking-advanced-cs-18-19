@@ -1,12 +1,13 @@
 from application import db
 from werkzeug.security import generate_password_hash, check_password_hash
 #from application import login
+from datetime import date
 
 
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     notes = db.Column(db.String(128), index=True, unique=False)
-    wdate = db.Column(db.Date(), index=True, unique=False)
+    wdate = db.Column(db.Date(), default= date.today, index=True, unique=False)
     weight_of_ort = db.Column(db.String(128), index=True, unique=False)
     weight_of_compost = db.Column(db.String(128), index=True, unique=False)
     groups = db.Column(db.String(128), index=True, unique=False)

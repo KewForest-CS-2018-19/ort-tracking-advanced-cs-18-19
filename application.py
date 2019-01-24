@@ -65,8 +65,9 @@ def bform():
             db.session.commit()
             db.session.close()
             return render_template('thanks.html', notes=form1.dbNotes.data)
-        except:
+        except Exception as e:
             db.session.rollback()
+            print("error" ,e)
             return render_template('bform.html', form1=form1)
         #return render_template('thanks.html', notes=form1.dbNotes.data)
     return render_template('bform.html', form1=form1)
