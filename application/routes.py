@@ -1,15 +1,54 @@
+"""
 from flask_login import current_user, login_user
 from .models import User
 from flask_login import logout_user
 from . import db
 from .forms import RegistrationForm
-
-
+"""
+from flask import render_template, flash, redirect, url_for, request
+from flask_login import login_user, logout_user, current_user, login_required
+from werkzeug.urls import url_parse
+from application import application, db
+from application.forms import RegistrationForm, EnterDBInfo, RetrieveDBInfo
+from application.models import User, Data
 # ...
 
+@application.route('/', methods=['GET', 'POST'])
+@application.route('/index', methods=['GET', 'POST'])
+def bview():
+    #form2 = RetrieveDBInfo(request.form)
+#not chained
+    #if request.method == 'POST' and form2.validate():
+    try:
+        #num_return = int(form2.numRetrieve.data)
+        query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        for q in query_db:
+            print(q.notes)
+        db.session.close()
+    except:
+        db.session.rollback()
+    return render_template('results.html', results=query_db)
+
+    #return render_template('bview.html', form1=form2)
+
+@application.route('/bform', methods=['GET', 'POST'])
+#@login_required
+def bform():
+    form1 = EnterDBInfo(request.form)
+
+    if request.method == 'POST' and form1.validate():
+        data_entered = Data(notes = form1.dbNotes.data, wdate = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data)
+        try:
+            db.session.add(data_entered)
+            db.session.commit()
+            db.session.close()
+        except:
+            db.session.rollback()
+        return render_template('thanks.html', notes=form1.dbNotes.data)
+    return render_template('bform.html', form1=form1)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@application.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -23,12 +62,12 @@ def login():
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 
-@app.route('/logout')
+@application.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/register', methods=['GET', 'POST'])
+@application.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))

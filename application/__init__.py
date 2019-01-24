@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
-from .routes import *
+#from .routes import *
 #from . models import User
 #from forms import RegistrationForm
 #from db import db,application
@@ -16,3 +16,5 @@ db = SQLAlchemy(application)
 
 login = LoginManager(application)
 login.login_view = 'login'
+
+from application import routes, models
