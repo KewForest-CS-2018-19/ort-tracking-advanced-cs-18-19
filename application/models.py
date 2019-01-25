@@ -3,15 +3,16 @@ from datetime import datetime
 from application import db, login
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from datetime import date
 
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     notes = db.Column(db.String(128), index=True, unique=False)
-    wdate = db.Column(db.Date(), index=True, unique=False)
+    wdate = db.Column(db.Date(), default= date.today, index=True, unique=False)
     weight_of_ort = db.Column(db.String(128), index=True, unique=False)
     weight_of_compost = db.Column(db.String(128), index=True, unique=False)
     groups = db.Column(db.String(128), index=True, unique=False)
+
 
 #add columns here
     def __init__(self, notes, wdate, weight_of_ort, weight_of_compost, groups):
