@@ -9,8 +9,8 @@ from flask import Flask, render_template, request
 from application import db
 from application.models import Data
 from application.forms import EnterDBInfo, RetrieveDBInfo
-from flask_login import LoginManager
-from flask_login import current_user, login_user
+#from flask_login import LoginManager
+#from flask_login import current_user, login_user
 from application.models import User
 from flask_login import logout_user
 from flask_login import login_required
@@ -26,7 +26,6 @@ application.debug=True
 # change this to your own value
 application.secret_key = 'cdg1312001GDC'
 #application.secret_key = 'cC1YCIWOj9GgWspgNEo2'
-login = LoginManager(application)
 #login.login_view = 'login'
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
