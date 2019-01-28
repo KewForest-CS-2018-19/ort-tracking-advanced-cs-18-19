@@ -9,7 +9,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from application import application, db
-from application.forms import RegistrationForm, EnterDBInfo, RetrieveDBInfo
+from application.forms import RegistrationForm, LoginForm, EnterDBInfo, RetrieveDBInfo
 from application.models import User, Data
 # ...
 
