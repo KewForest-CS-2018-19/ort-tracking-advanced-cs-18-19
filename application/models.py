@@ -4,7 +4,6 @@ from application import db, login
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
-
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     notes = db.Column(db.String(128), index=True, unique=False)
