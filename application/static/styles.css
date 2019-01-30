@@ -1,7 +1,7 @@
-body { max-width: 960px; margin: 0 auto; background: #fffea4;; }
-html{
-  background:repeating-linear-gradient(180deg, #00dbff66, #00dbff66 25px, #7700aa80 25px, #7700aa80 50px, #ff00b499 50px, #ff00b499 75px, #f709 75px, #f709 100px, #ff0 100px, #ff0 125px, #0f0 125px, #0f0 150px);
+body {margin: 0 auto;
+  background:repeating-linear-gradient(180deg, #00dbff66, #00dbff66 50px, #7700aa80 50px, #7700aa80 100px, #ff00b499 100px, #ff00b499 150px, #f709 150px, #f709 200px, #ff0 200px, #ff0 250px, #0f0 250px, #0f0 300px);
 }
+
 .content {
   background:#fffc;
 }
