@@ -4,8 +4,12 @@ from application import db, login
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
+from flask_login import login_manager
 
-class User(db.Model):
+#@login_manager.user_loader
+
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=False)
@@ -25,7 +29,8 @@ class User(db.Model):
 
 def load_user(id):
     return User.query.get(int(id))
-
+def get_user(id):
+  return User.query.get(int(id))
 
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
