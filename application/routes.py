@@ -20,7 +20,7 @@ def bview():
 #not chained
     #if request.method == 'POST' and form2.validate():
     try:
-        num_return = int(form2.numRetrieve.data)
+        #num_return = int(form2.numRetrieve.data)
         query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
         for q in query_db:
             print(q.notes)
@@ -32,7 +32,7 @@ def bview():
     #return render_template('bview.html', form1=form2)
 
 @application.route('/bform', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def bform():
     form1 = EnterDBInfo(request.form)
 
@@ -51,7 +51,7 @@ def bform():
 @application.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('bform'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
@@ -61,19 +61,19 @@ def login():
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('bview')
-        return redirect(url_for('bview'))
+            next_page = url_for('bform')
+        return redirect(url_for('bform'))
     return render_template('login.html', title='Sign In', form=form)
 
 @application.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('/index'))
+    return redirect(url_for('index'))
 
 @application.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('/index'))
+        return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
