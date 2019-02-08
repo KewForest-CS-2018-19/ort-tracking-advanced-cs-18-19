@@ -27,7 +27,14 @@ def bview():
         db.session.close()
     except:
         db.session.rollback()
-    return render_template('results.html', results=query_db)
+    total_ort=0
+    total_g=0
+    for i in query_db:
+        total_ort+= float(i.weight_of_ort)
+        total_g += float(i.weight_of_compost)
+    print(total_ort,total_g)
+
+    return render_template('results.html', results=query_db, total_ort=total_ort, total_g=total_g)
 
     #return render_template('bview.html', form1=form2)
 
