@@ -61,3 +61,7 @@ input[type=submit] { align-self: start; min-width: 10em; }
     font-size: 26px;
   }
 }
+
+.navbar-nav{
+  float:none;
+}
