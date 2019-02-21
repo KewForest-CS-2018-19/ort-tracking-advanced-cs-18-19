@@ -54,9 +54,26 @@ input[type=submit] { align-self: start; min-width: 10em; }
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
-.ficon
-{float:left}
-.nfield {float:right}
+
+.iconwrap {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.leftcol,
+.rightcol {
+  float: left;
+}
+
+.leftcol {
+  width: 50px;
+}
+
+.rightcol {
+  width: 250px;
+  margin-top: 50px;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   h1 {
