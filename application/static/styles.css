@@ -56,22 +56,21 @@ input[type=submit] { align-self: start; min-width: 10em; }
 .col-12 {width: 100%;}
 
 .iconwrap {
-  width: 100%;
-  margin: 0 auto;
+  display: flex;
+ width: 100%;
+ margin-bottom: 15px;
 }
 
-.leftcol,
 .rightcol {
-  float: left;
 }
 
 .leftcol {
-  width: 50px;
 }
 
 .rightcol {
-  width: 250px;
+  width: 100%;
   margin-top: 50px;
+  margin-left: 10px;
 }
 
 @media only screen and (max-width: 768px) {
