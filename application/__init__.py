@@ -9,8 +9,8 @@ from flask_login import login_required
 #from . models import User
 #from forms import RegistrationForm
 #from db import db,application
-
-application = Flask(__name__)
+#application = Flask(__name__)
+application = Flask(__name__, static_folder='../static')
 application.config.from_object('config')
 db = SQLAlchemy(application)
 
