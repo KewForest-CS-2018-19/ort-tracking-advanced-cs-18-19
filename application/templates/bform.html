@@ -13,19 +13,14 @@
 
     {{ form1.hidden_tag() }}
     <div class ="iconwrap">
-      <div class = "leftcol">
         <img class="ficon" src="static/images/compost.png" alt="compost" height="100">
-        </div>
 
     <div class = "rightcol">
       {{ macros.render_field(form1.dbWeight_of_ORT, placeholder='Weight in pounds for ORT', type='dbNotes', label_visible=false) }}
     </div>
   </div>
-  <br>
   <div class ="iconwrap">
-    <div class = "leftcol">
       <img class="ficon" src="static/images/trashcan.png" alt="trashcan" height="100">
-    </div>
   <div class = "rightcol">
     {{ macros.render_field(form1.dbWeight_of_Compost, placeholder='Weight in pounds for Compost', type='dbNotes', label_visible=false) }}
     </div></div>
