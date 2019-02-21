@@ -55,6 +55,24 @@ input[type=submit] { align-self: start; min-width: 10em; }
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
+.iconwrap {
+  display: flex;
+ width: 100%;
+ margin-bottom: 15px;
+}
+
+.rightcol {
+}
+
+.leftcol {
+}
+
+.rightcol {
+  width: 100%;
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   h1 {
@@ -63,5 +81,5 @@ input[type=submit] { align-self: start; min-width: 10em; }
 }
 
 .navbar-nav{
-  float:none; 
+  float:none;
 }
