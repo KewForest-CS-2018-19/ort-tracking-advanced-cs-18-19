@@ -16,13 +16,13 @@
         <img class="ficon" src="static/images/compost.png" alt="compost" height="100">
 
     <div class = "rightcol">
-      {{ macros.render_field(form1.dbWeight_of_ORT, placeholder='Weight in pounds for ORT', type='dbNotes', label_visible=false) }}
+      {{ macros.render_field(form1.dbWeight_of_ORT, placeholder='Weight in pounds for ORT', type='number', label_visible=false) }}
     </div>
   </div>
   <div class ="iconwrap">
       <img class="ficon" src="static/images/trashcan.png" alt="trashcan" height="100">
   <div class = "rightcol">
-    {{ macros.render_field(form1.dbWeight_of_Compost, placeholder='Weight in pounds for Compost', type='dbNotes', label_visible=false) }}
+    {{ macros.render_field(form1.dbWeight_of_Compost, placeholder='Weight in pounds for Compost', type='number', label_visible=false) }}
     </div></div>
     {{ macros.render_field(form1.dbGroups, placeholder='Enter grade', type='dbNotes', label_visible=false) }}
     {{ macros.render_field(form1.dbNotes, placeholder='Enter additional information', type='dbNotes', label_visible=false) }}
