@@ -91,6 +91,7 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+@application.route('/about')
 def about():
-    return redirect(url_for('about.html'))
+    return redirect(url_for('about'))
     return render_template('about.html', title = 'About', form=form)
