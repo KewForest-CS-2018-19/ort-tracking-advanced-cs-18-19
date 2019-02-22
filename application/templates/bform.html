@@ -24,7 +24,16 @@
   <div class = "rightcol">
     {{ macros.render_field(form1.dbWeight_of_Compost, placeholder='Weight in pounds for Compost', type='number', label_visible=false) }}
     </div></div>
-    {{ macros.render_field(form1.dbGroups, placeholder='Enter grade', type='dbNotes', label_visible=false) }}
+    <div class="form-group  ">
+
+
+      <select class="form-control" id="dbGroups" name="dbGroups" placeholder="Enter grade" required="" type="dbNotes" value="">
+            </div>
+  <option value="LS">Lower School</option>
+  <option value="MS">Middle School</option>
+  <option value="US">Upper School</option>
+    </select>
+    <br>
     {{ macros.render_field(form1.dbNotes, placeholder='Enter additional information', type='dbNotes', label_visible=false) }}
     {{ macros.render_field(form1.dbDate, placeholder='Enter date', type='dbNotes', label_visible=false) }}
 
