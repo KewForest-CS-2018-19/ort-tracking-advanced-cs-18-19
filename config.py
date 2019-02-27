@@ -7,10 +7,16 @@
 #SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://davidaronson13:Hail00Rach03@flask-app-da.crmxs7h85wyq.us-east-2.rds.amazonaws.com:3306/flask-app-da'
 
 # Uncomment the line below if you want to work with a local DB
-SQLALCHEMY_DATABASE_URI = 'sqlite:///test2.db'
 
 
-SQLALCHEMY_POOL_RECYCLE = 3600
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 
-WTF_CSRF_ENABLED = True
-SECRET_KEY = 'dsaf0897sfdg45sfdgfdsaqzdf98sdf0a'
+class Config(object):
+    #SQLALCHEMY_DATABASE_URI = 'sqlite:///test2.db'
+    SQLALCHEMY_POOL_RECYCLE = 3600
+    WTF_CSRF_ENABLED = True
+    SECRET_KEY = 'dsaf0897sfdg45sfdgfdsaqzdf98sdf0a'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'app.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
