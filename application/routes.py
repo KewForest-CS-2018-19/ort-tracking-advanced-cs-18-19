@@ -12,9 +12,13 @@ from application import application, db
 from application.forms import RegistrationForm, LoginForm, EnterDBInfo, RetrieveDBInfo
 from application.models import User, Data
 # ...
-
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
+def home():
+    return render_template('rankings.html')
+
+@application.route('/view', methods=['GET', 'POST'])
+@login_required
 def bview():
     #form2 = RetrieveDBInfo(request.form)
 #not chained
