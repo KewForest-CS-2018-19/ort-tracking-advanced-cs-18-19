@@ -12,15 +12,30 @@
 <form method="post" action="/bform"  id="db_post" name="db_post">
 
     {{ form1.hidden_tag() }}
-    <img class="ficon" src="static/images/compost.png" alt="compost" height="100">
+    <div class ="iconwrap">
+        <img class="ficon" src="static/images/compost.png" alt="compost" height="100">
+
+    <div class = "rightcol">
+      {{ macros.render_field(form1.dbWeight_of_ORT, placeholder='Weight in pounds for ORT', type='number', label_visible=false) }}
+    </div>
+  </div>
+  <div class ="iconwrap">
+      <img class="ficon" src="static/images/trashcan.png" alt="trashcan" height="100">
+  <div class = "rightcol">
+    {{ macros.render_field(form1.dbWeight_of_Compost, placeholder='Weight in pounds for Compost', type='number', label_visible=false) }}
+    </div></div>
+    <div class="form-group  ">
 
 
-    {{ macros.render_field(form1.dbDate, placeholder='Enter date', type='dbNotes', label_visible=false) }}
-    {{ macros.render_field(form1.dbWeight_of_ORT, placeholder='Weight in pounds for ORT', type='dbNotes', label_visible=false) }}
-      <img class="ficon" src="static/images/trashcan.png" alt="trashcan"s height="100">
-    {{ macros.render_field(form1.dbWeight_of_Compost, placeholder='Weight in pounds for Compost', type='dbNotes', label_visible=false) }}
-    {{ macros.render_field(form1.dbGroups, placeholder='Enter grade', type='dbNotes', label_visible=false) }}
+      <select class="form-control" id="dbGroups" name="dbGroups" placeholder="Enter grade" required="" type="dbNotes" value="">
+            </div>
+  <option value="LS">Lower School</option>
+  <option value="MS">Middle School</option>
+  <option value="US">Upper School</option>
+    </select>
+    <br>
     {{ macros.render_field(form1.dbNotes, placeholder='Enter additional information', type='dbNotes', label_visible=false) }}
+    {{ macros.render_field(form1.dbDate, placeholder='Enter date', type='dbNotes', label_visible=false) }}
 
 
     <div align="center"><button type="submit" class="btn btn-primary">Enter</button></p></div>

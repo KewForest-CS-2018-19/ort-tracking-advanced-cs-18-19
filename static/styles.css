@@ -14,12 +14,21 @@ nav h1 { flex: auto; margin: 0; }
 nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
+html,
+body{
+  height:100%;
+  margin: 0px;
+  padding: 0px;
+}
 .main-wrap{
   background-color: #ffffff9c;
+  min-height: 100vh;
+  height: auto !important;
   height: 100%;
   /*width: 100%;*/
-  margin: 5%;
+  margin: 20px 5%;
   padding: 5%;
+  background-size: cover;
 }
 .topnav a {
   margin: 20px
@@ -55,6 +64,24 @@ input[type=submit] { align-self: start; min-width: 10em; }
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
+.iconwrap {
+  display: flex;
+ width: 100%;
+ margin-bottom: 15px;
+}
+
+.rightcol {
+}
+
+.leftcol {
+}
+
+.rightcol {
+  width: 100%;
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   h1 {
@@ -63,5 +90,5 @@ input[type=submit] { align-self: start; min-width: 10em; }
 }
 
 .navbar-nav{
-  float:none; 
+  float:none;
 }
