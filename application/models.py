@@ -7,6 +7,13 @@ from flask_login import login_manager
 
 #@login_manager.user_loader
 
+class School (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    notes = db.Column(db.String(128), index=True, unique=False)
+    name = db.Column(db.String(64), index=True, unique=True)
+    date_joined = db.Column(db.Date(), default= date.today, index=True, unique=False)
+    url = db.Column(db.String(64), index=True, unique=True)
+    number_of_students = db.Column(db.String(128), index=True, unique=False)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -14,6 +21,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(128), index=True, unique=False)
     password_hash= db.Column(db.String(128))
     posts = db.relationship('Data', backref = 'author', lazy ='dynamic' )
+    school_id = db.Column(db.Integer, db.ForeignKey('school.id'))
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
