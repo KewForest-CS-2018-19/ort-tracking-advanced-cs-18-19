@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(128), index=True, unique=False)
     password_hash= db.Column(db.String(128))
     posts = db.relationship('Data', backref = 'author', lazy ='dynamic' )
+    date_joined = db.Column(db.Date(), default= date.today, index=True, unique=False)
     school_id = db.Column(db.Integer, db.ForeignKey('school.id'))
 
     def __repr__(self):
