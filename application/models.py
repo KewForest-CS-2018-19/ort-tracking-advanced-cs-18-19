@@ -12,7 +12,7 @@ class School (db.Model):
     notes = db.Column(db.String(128), index=True, unique=False)
     name = db.Column(db.String(64), index=True, unique=True)
     date_joined = db.Column(db.Date(), default= date.today, index=True, unique=False)
-    url = db.Column(db.String(64), index=True, unique=True)
+    url = db.Column(db.String(128), index=True, unique=True)
     number_of_students = db.Column(db.String(128), index=True, unique=False)
 
 class User(db.Model, UserMixin):
