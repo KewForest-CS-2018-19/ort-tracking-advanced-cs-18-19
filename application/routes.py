@@ -10,7 +10,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from application import application, db
 from application.forms import RegistrationForm, LoginForm, EnterDBInfo, RetrieveDBInfo
-from application.models import User, Data
+from application.models import User, Data, School
 # ...
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
@@ -88,6 +88,9 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
+        school = School(name=form.school.data)
+        db.session.add(school)
+        db.session.commit()
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
