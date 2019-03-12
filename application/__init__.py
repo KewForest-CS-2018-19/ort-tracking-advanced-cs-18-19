@@ -13,7 +13,7 @@ from flask_migrate import Migrate
 #from db import db,application
 #application = Flask(__name__)
 application = Flask(__name__, static_folder='../static')
-application.config.from_object('config')
+application.config.from_object(Config)
 db = SQLAlchemy(application)
 migrate= Migrate(application,db)
 login = LoginManager(application)

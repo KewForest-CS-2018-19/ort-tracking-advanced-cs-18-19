@@ -11,12 +11,20 @@
 
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
+"""
+SQLALCHEMY_DATABASE_URI = 'sqlite:///test2.db'
+
+
+SQLALCHEMY_POOL_RECYCLE = 3600
+
+WTF_CSRF_ENABLED = True
+SECRET_KEY = 'dsaf0897sfdg45sfdgfdsaqzdf98sdf0a'
+"""
 
 class Config(object):
     #SQLALCHEMY_DATABASE_URI = 'sqlite:///test2.db'
-    SQLALCHEMY_POOL_RECYCLE = 3600
-    WTF_CSRF_ENABLED = True
+    #SQLALCHEMY_POOL_RECYCLE = 3600
+    #WTF_CSRF_ENABLED = True
     SECRET_KEY = 'dsaf0897sfdg45sfdgfdsaqzdf98sdf0a'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'app.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'application/application.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False

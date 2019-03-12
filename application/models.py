@@ -12,7 +12,7 @@ class School (db.Model):
     notes = db.Column(db.String(128), index=True, unique=False)
     name = db.Column(db.String(64), index=True, unique=True)
     date_joined = db.Column(db.Date(), default= date.today, index=True, unique=False)
-    url = db.Column(db.String(64), index=True, unique=True)
+    url = db.Column(db.String(128), index=True, unique=True)
     number_of_students = db.Column(db.String(128), index=True, unique=False)
 
 class User(db.Model, UserMixin):
@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(128), index=True, unique=False)
     password_hash= db.Column(db.String(128))
     posts = db.relationship('Data', backref = 'author', lazy ='dynamic' )
+    date_joined = db.Column(db.Date(), default= date.today, index=True, unique=False)
     school_id = db.Column(db.Integer, db.ForeignKey('school.id'))
 
     def __repr__(self):
