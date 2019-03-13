@@ -94,7 +94,7 @@ def register():
         #query_db = Data.query.order_by(Data.id.desc())
         snum=School.query.order_by(School.id.desc()).first()
         print(snum.id)
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(username=form.username.data, email=form.email.data, school_id=snum.id)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
