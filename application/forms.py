@@ -27,7 +27,7 @@ class RetrieveDBInfo(Form):
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    school = StringField('School', validators=[DataRequired()])
+    school = StringField('School', validators=[])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])

@@ -87,7 +87,7 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit(): #submission has been validated on front end
         school = School(name=form.school.data)
         db.session.add(school)
         db.session.commit()
@@ -100,7 +100,11 @@ def register():
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+    #going to query the wschools table here
+    slist=School.query.order_by(School.id.asc())
+    print(slist) 
+    return render_template('register.html', title='Register', form=form, slist=slist)
+
 
 @application.route('/about')
 def about():
