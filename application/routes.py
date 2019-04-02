@@ -102,10 +102,14 @@ def register():
         return redirect(url_for('login'))
     #going to query the wschools table here
     slist=School.query.order_by(School.id.asc())
-    print(slist) 
+    print(slist)
     return render_template('register.html', title='Register', form=form, slist=slist)
 
 
 @application.route('/about')
 def about():
     return render_template('about.html', title = 'About')
+
+@application.route('/myschool')
+def myschool():
+    return render_template('myschool.html', title = 'My School')
