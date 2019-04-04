@@ -93,8 +93,8 @@ def register():
         db.session.commit()
         #query_db = Data.query.order_by(Data.id.desc())
         snum=School.query.order_by(School.id.desc()).first()
-        print(snum.id)
-        user = User(username=form.username.data, email=form.email.data, school_id=snum.id)
+        print("schoolnum",snum.id)
+        user = User(username=form.username.data, email=form.email.data, school_id=form.schoolid.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -102,7 +102,7 @@ def register():
         return redirect(url_for('login'))
     #going to query the wschools table here
     slist=School.query.order_by(School.id.asc())
-    print(slist) 
+    print(slist)
     return render_template('register.html', title='Register', form=form, slist=slist)
 
 
