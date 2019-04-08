@@ -21,17 +21,19 @@
 
         {{ form.school.label }}<br>
         <div class="form-group  ">
-          <select class="form-control" id="schoollist" name="school" placeholder="Choose School" required="" type="" value="">
+          <select class="form-control" id="schoollist" name="schoolid" placeholder="Choose School" required="" type="" value="">
                 {% for z in slist %}
       <option value="{{ z.id }}">{{ z.name }}</option>{% endfor %}
       <option value="other">Other</option>
         </select>  </div>
-        <p>
+        <!--
+          <p>
             {{ form.school(size=32) }}<br>
             {% for error in form.school.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        -->
         <p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
