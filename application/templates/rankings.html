@@ -14,7 +14,6 @@
 <tr>
   <th>School</th>
   <th>Ort</th>
-  <th>Compost</th>
 </tr>
 </thead>
 {% for z in results %}
@@ -22,12 +21,33 @@
 <tr>
   <td>{{z.school}}</td>
   <td>{{z.weight_of_ort}}</td>
-  <td>{{z.weight_of_compost}}</td>
 </tr>
 {% endfor %}
 <tr>
 <td>Totals</td>
 <td>{{total_ort}}</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<table class=" table table-striped table-hover">
+<thead>
+<tr>
+  <th>School</th>
+  <th>Compost</th>
+</tr>
+</thead>
+{% for z in results %}
+<tbody>
+<tr>
+<td>{{z.school}}</td>
+<td>{{z.weight_of_compost}}</td>
+</tr>
+{% endfor %}
+<tr>
+<td>Totals</td>
 <td>{{total_g}}</td>
 <td></td>
 <td></td>
