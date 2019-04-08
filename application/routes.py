@@ -110,6 +110,6 @@ def register():
 def about():
     return render_template('about.html', title = 'About')
 
-@application.route('/myschool')
-def myschool():
-    return render_template('myschool.html', title = 'My School')
+@application.route('/rankings')
+def rankings():
+    return render_template('rankings.html', title = 'My School')
