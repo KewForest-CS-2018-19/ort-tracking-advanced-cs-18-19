@@ -31,7 +31,7 @@ element.style.display='none';
 
         {{ form.school.label }}<br>
         <div class="form-group  ">
-          <select class="form-control" onchange="CheckOther(this.value)"id="schoollist" name="schoolid" placeholder="Choose School" required="" type="" value="">
+          <select class="form-control" onchange="ChjeckOther(this.value)"id="schoollist" name="schoolid" placeholder="Choose School" required="" type="" value="">
                 {% for z in slist %}
       <option value="{{ z.id }}">{{ z.name }}</option>{% endfor %}
       <option value="other">Other</option>
