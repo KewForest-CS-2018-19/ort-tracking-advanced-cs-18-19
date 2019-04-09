@@ -20,6 +20,14 @@ body{
   margin: 0px;
   padding: 0px;
 }
+div.decoration {
+  position: relative;
+  right; 50px;
+  }
+
+.decoration{
+  z-index: 1;
+}
 .main-wrap{
   background-color: #ffffff9c;
   min-height: 100vh;
@@ -28,6 +36,7 @@ body{
   /*width: 100%;*/
   margin: 20px 5%;
   padding: 5%;
+  z-index: 10;
   background-size: cover;
 }
 .topnav a {
