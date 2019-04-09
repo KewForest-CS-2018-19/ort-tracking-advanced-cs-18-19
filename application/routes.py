@@ -88,13 +88,16 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit(): #submission has been validated on front end
-        school = School(name=form.school.data)
-        db.session.add(school)
-        db.session.commit()
-        #query_db = Data.query.order_by(Data.id.desc())
-        snum=School.query.order_by(School.id.desc()).first()
-        print("schoolnum",snum.id)
-        user = User(username=form.username.data, email=form.email.data, school_id=form.schoolid.data)
+        print("school",form.schoolid.data)
+        if form.schoolid.data == 'other':
+            school = School(name=form.school.data)
+            print(school)
+            db.session.add(school)
+            db.session.commit()
+            newschool=School.query(school.name)
+            user = User(username=form.username.data, email=form.email.data, school_id=newschool.id)
+        else:
+            user = User(username=form.username.data, email=form.email.data, school_id=form.schoolid.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -102,7 +105,7 @@ def register():
         return redirect(url_for('login'))
     #going to query the wschools table here
     slist=School.query.order_by(School.id.asc())
-    print(slist)
+    #print(slist)
     return render_template('register.html', title='Register', form=form, slist=slist)
 
 
