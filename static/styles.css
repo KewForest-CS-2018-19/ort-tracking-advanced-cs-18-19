@@ -21,11 +21,22 @@ body{
   padding: 0px;
 }
 div.decoration {
-  position: relative;
-  right; 50px;
+  position: fixed;
+  right: 0;
+  padding-right: 100px;
   }
 
 .decoration{
+  z-index: 1;
+}
+div.decoration2 {
+  position: fixed;
+  left: 0;
+  transform: rotate(270deg);
+  padding-right: 70px;
+  }
+
+.decoration2{
   z-index: 1;
 }
 .main-wrap{
@@ -37,6 +48,7 @@ div.decoration {
   margin: 20px 5%;
   padding: 5%;
   z-index: 10;
+  position: relative;
   background-size: cover;
 }
 .topnav a {
