@@ -88,13 +88,15 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit(): #submission has been validated on front end
-        print("school",form.schoolid.data)
-        if form.schoolid.data == 'other':
+        #print("school",form.schoolid.data)
+        if form.schoolid.data == 0:
             school = School(name=form.school.data)
             print(school)
             db.session.add(school)
             db.session.commit()
-            newschool=School.query(school.name)
+            #print(school.name)
+            newschool=School.query.filter(School.name == school.name).first()
+            print(newschool.id)
             user = User(username=form.username.data, email=form.email.data, school_id=newschool.id)
         else:
             user = User(username=form.username.data, email=form.email.data, school_id=form.schoolid.data)
