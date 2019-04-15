@@ -26,8 +26,8 @@ def bview():
     print(current_user.school_id)
     try:
         #num_return = int(form2.numRetrieve.data)
-        query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
-        #query_db = Data.query.filter(Data.school).order_by(Data.id.desc())#took out .limit(num_return)
+        #query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        query_db = Data.query.filter(Data.school).order_by(Data.id.desc())#took out .limit(num_return)
         for q in query_db:
             print(q.notes)
         db.session.close()
