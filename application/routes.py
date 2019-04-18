@@ -26,8 +26,8 @@ def bview():
     print(current_user.school_id)
     try:
         #num_return = int(form2.numRetrieve.data)
-        query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
-        #query_db = Data.query.filter(Data.school).order_by(Data.id.desc())#took out .limit(num_return)
+        #query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        query_db = Data.query.filter(Data.school_id).order_by(Data.id.desc())#took out .limit(num_return)
         for q in query_db:
             print(q.notes)
         db.session.close()
@@ -48,9 +48,10 @@ def bview():
 @login_required
 def bform():
     form1 = EnterDBInfo(request.form)
+    print(current_user.school_id)
 
     if request.method == 'POST' and form1.validate():
-        data_entered = Data(notes = form1.dbNotes.data, wdate = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data)
+        data_entered = Data(notes = form1.dbNotes.data, wdate = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data, school_id= current_user.school_id)
         #data_entered = Data( weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data)
         try:
             db.session.add(data_entered)
