@@ -16,7 +16,7 @@
 <ul class="topnav nav navbar-nav">
   {% if current_user.is_authenticated %}
     <li><a href="{{url_for('bview')}}">My School</a></li>
-    <li><a href="{{url_for('rankings')}}">Rankings</a></li>
+    <li><a href="{{url_for('home')}}">Rankings</a></li>
     <li><a href="{{ url_for('bform') }}">Enter Waste</a></li>
     <li><a href="{{ url_for('logout') }}">Logout</a></li>
     <li><a href="{{url_for('about')}}">About</a></li>

@@ -15,8 +15,11 @@ from application.models import User, Data, School
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 def home():
+    print("user", current_user.school_id)
     try:
-        query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        #query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        query_db = Data.query.filter(Data.school_id).order_by(Data.id.desc())#took out .limit(num_return)
+        print ("query", query_db)
         for q in query_db:
             print("results",q)
         db.session.close()
@@ -61,7 +64,7 @@ def bform():
     print(current_user.school_id)
 
     if request.method == 'POST' and form1.validate():
-        data_entered = Data(notes = form1.dbNotes.data, wdate = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data, school_id= current_user.school_id)
+        data_entered = Data(notes = form1.dbNotes.data, wdate = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data, user_id= 1)
         #data_entered = Data( weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data)
         try:
             db.session.add(data_entered)
@@ -127,3 +130,7 @@ def register():
 @application.route('/about')
 def about():
     return render_template('about.html', title = 'About')
+#something is wrong
+@application.route('/rankings')
+def rankings():
+    return render_template('rankings.html', title = 'My School')
