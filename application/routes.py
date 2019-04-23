@@ -15,7 +15,17 @@ from application.models import User, Data, School
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 def home():
-    return render_template('rankings.html')
+    try:
+        query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        for q in query_db:
+            print("results",q)
+        db.session.close()
+    except:
+        print("error")
+        db.session.rollback()
+    results = [("KF",50),("AHOT",75),("JFJF",76.947),("ISUGJV",77.846),("JFIOEJ",78.849)]
+
+    return render_template('rankings.html',results=results)
 
 @application.route('/view', methods=['GET', 'POST'])
 @login_required
@@ -27,7 +37,7 @@ def bview():
     try:
         #num_return = int(form2.numRetrieve.data)
         #query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
-        query_db = Data.query.filter(Data.school).order_by(Data.id.desc())#took out .limit(num_return)
+        query_db = Data.query.filter(Data.school_id).order_by(Data.id.desc())#took out .limit(num_return)
         for q in query_db:
             print(q.notes)
         db.session.close()
@@ -117,7 +127,3 @@ def register():
 @application.route('/about')
 def about():
     return render_template('about.html', title = 'About')
-
-@application.route('/rankings')
-def rankings():
-    return render_template('rankings.html', title = 'My School')
