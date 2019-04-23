@@ -15,7 +15,20 @@ from application.models import User, Data, School
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 def home():
-    return render_template('rankings.html')
+    print("user", current_user.school_id)
+    try:
+        #query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        query_db = Data.query.filter(Data.school_id).order_by(Data.id.desc())#took out .limit(num_return)
+        print ("query", query_db)
+        for q in query_db:
+            print("results",q)
+        db.session.close()
+    except:
+        print("error")
+        db.session.rollback()
+    results = [("KF",50),("AHOT",75),("JFJF",76.947),("ISUGJV",77.846),("JFIOEJ",78.849)]
+
+    return render_template('rankings.html',results=results)
 
 @application.route('/view', methods=['GET', 'POST'])
 @login_required
@@ -23,9 +36,11 @@ def bview():
     #form2 = RetrieveDBInfo(request.form)
 #not chained
     #if request.method == 'POST' and form2.validate():
+    print(current_user.school_id)
     try:
         #num_return = int(form2.numRetrieve.data)
-        query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        #query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
+        query_db = Data.query.filter(Data.school_id).order_by(Data.id.desc())#took out .limit(num_return)
         for q in query_db:
             print(q.notes)
         db.session.close()
@@ -46,9 +61,10 @@ def bview():
 @login_required
 def bform():
     form1 = EnterDBInfo(request.form)
+    print(current_user.school_id)
 
     if request.method == 'POST' and form1.validate():
-        data_entered = Data(notes = form1.dbNotes.data, wdate = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data)
+        data_entered = Data(notes = form1.dbNotes.data, wdate = form1.dbDate.data, weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data, user_id= 1)
         #data_entered = Data( weight_of_ort = form1.dbWeight_of_ORT.data, weight_of_compost = form1.dbWeight_of_Compost.data, groups = form1.dbGroups.data)
         try:
             db.session.add(data_entered)
@@ -88,13 +104,15 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit(): #submission has been validated on front end
-        print("school",form.schoolid.data)
-        if form.schoolid.data == 'other':
+        #print("school",form.schoolid.data)
+        if form.schoolid.data == 0:
             school = School(name=form.school.data)
             print(school)
             db.session.add(school)
             db.session.commit()
-            newschool=School.query(school.name)
+            #print(school.name)
+            newschool=School.query.filter(School.name == school.name).first()
+            print(newschool.id)
             user = User(username=form.username.data, email=form.email.data, school_id=newschool.id)
         else:
             user = User(username=form.username.data, email=form.email.data, school_id=form.schoolid.data)
@@ -112,7 +130,7 @@ def register():
 @application.route('/about')
 def about():
     return render_template('about.html', title = 'About')
-
+#something is wrong
 @application.route('/rankings')
 def rankings():
     return render_template('rankings.html', title = 'My School')

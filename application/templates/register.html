@@ -4,7 +4,7 @@
 <script type="text/javascript">
 function CheckOther(val){
 var element=document.getElementById('school');
-if(val=='Choose School'||val=='other')
+if(val=='Choose School'||val== 0)
 element.style.display='block';
 else
 element.style.display='none';
@@ -30,11 +30,11 @@ element.style.display='none';
         </p>
 
         {{ form.school.label }}<br>
-        <div class="form-group  ">
+        <div class="form-group  " width="100">
           <select class="form-control" onchange="CheckOther(this.value)"id="schoollist" name="schoolid" placeholder="Choose School" required="" type="" value="">
                 {% for z in slist %}
       <option value="{{ z.id }}">{{ z.name }}</option>{% endfor %}
-      <option value="other">Other</option>
+      <option value="0">Other</option>
         </select>  </div>
         <input type="text" name="school" id="school" style='display:none;'/>
         <!--

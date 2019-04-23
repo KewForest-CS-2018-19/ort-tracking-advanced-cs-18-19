@@ -48,6 +48,7 @@ class Data(db.Model):
     weight_of_compost = db.Column(db.String(128), index=True, unique=False)
     groups = db.Column(db.String(128), index=True, unique=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    school_id = db.Column(db.Integer, db.ForeignKey('school.id'))
 
 
 #add columns here
