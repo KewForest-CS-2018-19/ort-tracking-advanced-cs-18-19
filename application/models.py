@@ -52,12 +52,15 @@ class Data(db.Model):
 
 
 #add columns here
-    def __init__(self, notes, wdate, weight_of_ort, weight_of_compost, groups):
+    def __init__(self, notes, wdate, weight_of_ort, weight_of_compost, groups, user_id, school_id):
         self.notes = notes
         self.wdate = wdate
         self.weight_of_ort = weight_of_ort
         self.weight_of_compost = weight_of_compost
         self.groups = groups
+        #adding
+        self.user_id = user_id
+        self.school_id = school_id
 
     def __repr__(self):
         return '<Data %r>' % self.notes

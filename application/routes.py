@@ -15,16 +15,16 @@ from application.models import User, Data, School
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 def home():
-    print("user", current_user.school_id)
+    #print("user", current_user)
     try:
         #query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
-        query_db = Data.query.filter(Data.school_id).order_by(Data.id.desc())#took out .limit(num_return)
+        query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
         print ("query", query_db)
         for q in query_db:
             print("results",q)
         db.session.close()
-    except:
-        print("error")
+    except Exception as e:
+        print("error", e)
         db.session.rollback()
     results = [("KF",50),("AHOT",75),("JFJF",76.947),("ISUGJV",77.846),("JFIOEJ",78.849)]
 
