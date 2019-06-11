@@ -17,31 +17,40 @@ from application.models import User, Data, School
 def home():
     print("user at home", current_user)
     try:
-        #query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
         query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
         print ("query", query_db)
         results=[]
+        total_ort=0
+        total_comp=0
         for q in query_db:
             #print("new results",q.id,q.weight_of_ort, q.weight_of_compost,q.school_id)
+            #look up the name of the school by the school id and add it to q
             query_school = School.query.filter_by(id=q.school_id)
             #print("school name",query_school[0].name)
             q.school_name=query_school[0].name
-            inresults=False
+            #add ort and comp to grand totals
+            total_ort+= int(q.weight_of_ort)
+            total_comp+=int(q.weight_of_compost)
+
+            inresults=False #to keep tell if the school is in results or not
+            #loop therough the results and if the school is aready there add the ort and comp values
             for s in results:
                 if q.school_id == s[0]:
                     s[2]= int(s[2]) + int(q.weight_of_ort)
                     s[3]= int(s[3]) + int(q.weight_of_compost)
                     inresults=True
                     break
+            #if the school is not in results, add it
             if inresults == False:
                 results.append([q.school_id,q.school_name,q.weight_of_ort,q.weight_of_compost])
 
+        #sort results by ort from lowest to highest
         results= sorted(results, key=lambda x: int(x[2]))
         db.session.close()
+
     except Exception as e:
         print("error", e)
         db.session.rollback()
-    #results = [(0,"KF",50,20),("AHOT",75),("JFJF",76.947),("ISUGJV",77.846),("JFIOEJ",78.849)]
 
     return render_template('rankings.html',results=results)
 
