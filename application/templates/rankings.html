@@ -14,6 +14,7 @@
 <tr>
   <th>School</th>
   <th>Ort</th>
+  <th>Compost</th>
 </tr>
 <div class="iconwrap">
   <img class="ficon" src="static/images/apple.png" alt="apple" height="100">
@@ -21,8 +22,9 @@
 {% for z in results %}
 <tbody>
 <tr>
-  <td>{{z[0]}}</td>
   <td>{{z[1]}}</td>
+  <td>{{z[2]}}</td>
+  <td>{{z[3]}}</td>
 </tr>
 {% endfor %}
 <tr>
