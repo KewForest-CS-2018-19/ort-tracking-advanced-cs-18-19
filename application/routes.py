@@ -18,7 +18,6 @@ def home():
     print("user at home", current_user)
     try:
         query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
-        print ("query", query_db)
         results=[]
         total_ort=0
         total_comp=0
@@ -52,7 +51,7 @@ def home():
         print("error", e)
         db.session.rollback()
 
-    return render_template('rankings.html',results=results)
+    return render_template('rankings.html',results=results,total_ort=total_ort,total_comp=total_comp)
 
 @application.route('/view', methods=['GET', 'POST'])
 @login_required
