@@ -1,20 +1,18 @@
 # flask-app-da
-# different from aws tutorial
-Davids-Air:flask-app-da davidaronson$ python3 -m venv virt
-Davids-Air:flask-app-da davidaronson$ . virt/bin/activate
-(virt) Davids-Air:flask-app-da davidaronson$ pip install flask==1.0.2
+# different from aws tutoria
 
-(virt) Davids-Air:flask-app-da davidaronson$ pip install awsebcli --upgrade
+creat virt environment
+$ python3 -m venv virt
 
-(virt) Davids-Air:flask-app-da davidaronson$ pip install -r requirements.txt
+activate  virt environment
+$ . virt/bin/activate
+(virt) $ pip install flask==1.0.2
+
+(virt) $ pip install awsebcli --upgrade
+
+(virt) $ pip install -r requirements.txt
 
 
 eb init -p python-3.6 ort-tracker --region us-east-2
 eb deploy
 
-
-flask-app-da
-davidaronson13
-Hail00Rach03
-
-What I will change in the code is after creating an account or loging into their account is a quiz. The quiz will be 3 pages long with 10 questions per page. Then a result page will go up, changing the page where the blog posts are with a list of products and a graph of what the persons skin concerns are.  
