@@ -11,8 +11,8 @@ from flask_migrate import Migrate
 #from . models import User
 #from forms import RegistrationForm
 #from db import db,application
-#application = Flask(__name__)
-application = Flask(__name__, static_folder='../static')
+application = Flask(__name__)
+#application = Flask(__name__, static_folder='../static')
 application.config.from_object(Config)
 db = SQLAlchemy(application)
 migrate= Migrate(application,db)

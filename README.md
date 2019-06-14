@@ -1,20 +1,22 @@
-# flask-app-da
-# different from aws tutorial
-Davids-Air:flask-app-da davidaronson$ python3 -m venv virt
-Davids-Air:flask-app-da davidaronson$ . virt/bin/activate
-opn pC virt\Scripts\activate
-(virt) Davids-Air:flask-app-da davidaronson$ pip install flask==1.0.2
+ORT Tracker is an application developed by the Upper School Advanced Computer Science Class for the Kew Forest Community. It is coded to provide an easy, accesible way to track food waste and serves as an initiative to reduce the amount of food we waste here at the Kew Forest School. ORT Tracker allows for students to have an interactive experience while learning about the food they waste. In addition, ORT Tracker serves as an opportunity to bring the upper and lower school together to work in unison to provide an application that will benefit the whole Kew Forest Community.
 
-(virt) Davids-Air:flask-app-da davidaronson$ pip install awsebcli --upgrade
+The ORT tracker is a Python Flask application.
 
-(virt) Davids-Air:flask-app-da davidaronson$ pip install -r requirements.txt
+
+set up a virtual environment
+$ python3 -m venv virt
+
+activate it on Mac
+$ . virt/bin/activate
+on PC virt\Scripts\activate
+
+run it: $ python application.py
+(virt) Dn$ pip install flask==1.0.2
+
+(virt) $ pip install awsebcli --upgrade
+
+(virt) $ pip install -r requirements.txt
 
 
 eb init -p python-3.6 ort-tracker --region us-east-2
 eb deploy
-
-
-flask-app-da
-
-
-What I will change in the code is after creating an account or loging into their account is a quiz. The quiz will be 3 pages long with 10 questions per page. Then a result page will go up, changing the page where the blog posts are with a list of products and a graph of what the persons skin concerns are.  
