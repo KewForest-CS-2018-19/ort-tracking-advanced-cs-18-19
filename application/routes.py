@@ -60,6 +60,7 @@ def bview():
 #not chained
     #if request.method == 'POST' and form2.validate():
     print(current_user.school_id)
+    groups = ['LS1','LS2','MS','US']
     try:
         #num_return = int(form2.numRetrieve.data)
         #query_db = Data.query.order_by(Data.id.desc())#took out .limit(num_return)
@@ -72,12 +73,15 @@ def bview():
         db.session.rollback()
     total_ort=0
     total_g=0
+    count = 0
     for i in query_db:
         total_ort+= float(i.weight_of_ort)
         total_g += float(i.weight_of_compost)
+        count += 1
     print(total_ort,total_g)
-
-    return render_template('results.html', results=query_db, total_ort=total_ort, total_g=total_g)
+    average_ort=str(round(total_ort/count,2))
+    average_g=str(round(total_g/count,2))
+    return render_template('results.html', results=query_db, total_ort=total_ort, total_g=total_g,average_g=average_g, average_ort=average_ort)
 
     #return render_template('bview.html', form1=form2)
 
