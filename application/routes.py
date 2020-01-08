@@ -28,15 +28,15 @@ def home():
             #print("school name",query_school[0].name)
             q.school_name=query_school[0].name
             #add ort and comp to grand totals
-            total_ort+= int(q.weight_of_ort)
-            total_comp+=int(q.weight_of_compost)
+            total_ort+= float(q.weight_of_ort)
+            total_comp+=float(q.weight_of_compost)
 
             inresults=False #to keep tell if the school is in results or not
             #loop therough the results and if the school is aready there add the ort and comp values
             for s in results:
                 if q.school_id == s[0]:
-                    s[2]= int(s[2]) + int(q.weight_of_ort)
-                    s[3]= int(s[3]) + int(q.weight_of_compost)
+                    s[2]= float(s[2]) + float(q.weight_of_ort)
+                    s[3]= float(s[3]) + float(q.weight_of_compost)
                     inresults=True
                     break
             #if the school is not in results, add it
