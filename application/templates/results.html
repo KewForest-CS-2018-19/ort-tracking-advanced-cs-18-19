@@ -7,7 +7,7 @@
       </div>
 
 <p class= "totals">Total ORT: {{total_ort}}</p>
-<p class= "totals">Total Trash: {{total_g}}</p>
+<p class= "totals">Total Compost: {{total_c}}</p>
 
 <table class="table table-striped table-hover">
 <thead>
@@ -29,17 +29,46 @@
     <td>{{z.notes}}</td>
 </tr>
 {% endfor %}
+<!--
 <tr>
-<td>Totals</td>
-<td>{{total_ort}}</td>
-<td>{{total_g}}</td>
+<td>Total LS1</td>
+<td>{{ls1_total_ort}}</td>
+<td>{{ls1_total_c}}</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>Averages</td>
+<td>Total LS2</td>
+<td>{{ls2_total_ort}}</td>
+<td>{{ls2_total_c}}</td>
+<td></td>
+<td></td>
+</tr>
+<td>Average LS1</td>
+<td>{{average_ort_ls1}}</td>
+<td>{{average_c_ls1}}</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Average LS2</td>
+<td>{{average_ort_ls2}}</td>
+<td>{{average_c_ls1}}</td>
+<td></td>
+<td></td>
+</tr>
+-->
+<tr>
+<td>Total</td>
+<td>{{total_ort}}</td>
+<td>{{total_c}}</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Average</td>
 <td>{{average_ort}}</td>
-<td>{{average_g}}</td>
+<td>{{average_c}}</td>
 <td></td>
 <td></td>
 </tr>

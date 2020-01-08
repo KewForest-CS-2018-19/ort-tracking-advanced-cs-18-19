@@ -72,16 +72,47 @@ def bview():
         print("error",e)
         db.session.rollback()
     total_ort=0
-    total_g=0
+    total_c=0
+    ls1_total_ort = 0
+    ls1_total_c = 0
+    ls2_total_ort = 0
+    ls2_total_c = 0
     count = 0
+    count1=0
+    count2=0
     for i in query_db:
         total_ort+= float(i.weight_of_ort)
-        total_g += float(i.weight_of_compost)
+        total_c += float(i.weight_of_compost)
+        if i.groups == 'LS1':
+            ls1_total_ort += float(i.weight_of_ort)
+            ls1_total_c += float(i.weight_of_compost)
+            count1 += 1
+        elif i.groups == 'LS2':
+            ls2_total_ort += float(i.weight_of_ort)
+            ls2_total_c += float(i.weight_of_compost)
+            count2 += 1
+
         count += 1
-    print(total_ort,total_g)
+    print(total_ort,total_c)
+
     average_ort=str(round(total_ort/count,2))
-    average_g=str(round(total_g/count,2))
-    return render_template('results.html', results=query_db, total_ort=total_ort, total_g=total_g,average_g=average_g, average_ort=average_ort)
+    """
+    average_ort_ls1=str(round(ls1_total_ort/count1,2))
+    average_ort_ls2=str(round(ls2_total_ort/count2,2))
+    average_c_ls1=str(round(ls1_total_c/count1,2))
+    average_c_ls2=str(round(ls2_total_c/count2,2))
+    """
+    average_c=str(round(total_c/count,2))
+    total_c=str(round(total_c,2))
+    total_ort=str(round(total_ort,2))
+    #ls1_total_ort = str(round(ls1_total_ort,2))
+    #ls2_total_ort = str(round(ls2_total_ort,2))
+    return render_template('results.html', results=query_db, total_ort=total_ort,
+    total_c=total_c,average_c=average_c, average_ort=average_ort,
+    #ls1_total_ort=ls1_total_ort, ls1_total_c=ls1_total_c, ls2_total_ort=ls2_total_ort,ls2_total_c=ls2_total_c,
+    #average_ort_ls1=average_ort_ls1, average_ort_ls2=average_ort_ls2,
+    #average_c_ls1=average_c_ls1, average_c_ls2=average_c_ls2
+    )
 
     #return render_template('bview.html', form1=form2)
 
